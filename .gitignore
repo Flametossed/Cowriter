@@ -1,0 +1,13 @@
+# OS / editor cruft
+Thumbs.db
+Desktop.ini
+.DS_Store
+*~
+.vscode/
+
+# Claude local settings (keep shared skills, ignore machine-local overrides)
+.claude/settings.local.json
+
+# Scratch
+*.tmp
+/tmp/
