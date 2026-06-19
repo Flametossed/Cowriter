@@ -38,7 +38,13 @@ Don't ask the writer where they are — **look**. Inspect the project and infer 
 
 Pick the **earliest unmet phase** as the *suggested* next step — but always let the writer jump elsewhere. Phases 2 and 3 are skippable for writers who want to start drafting fast; offer, don't force.
 
-When multiple projects exist and none named, list them and ask which (or start new).
+**Projects live only in `projects/`.** Ignore `examples/` and any fixture/sample dirs — those are demos, not the writer's work.
+
+When **no real project** exists in `projects/` → go straight to the Phase 0 warm open. Don't resume a demo.
+
+When **multiple** projects exist and none named, list them and ask which (or start new).
+
+When **exactly one** project exists and the user didn't name it, don't silently resume — name it and confirm: *"Looks like you're mid-way through **&lt;book&gt;** (at &lt;phase&gt;). Pick that back up, or start something new?"*
 
 ---
 

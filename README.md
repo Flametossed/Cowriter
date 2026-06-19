@@ -76,7 +76,7 @@ It detects where your project is, then walks you through it one step at a time �
 - [x] Vertical slice (outline → scene → slop-check → continuity)
 - [x] Remaining skills (premise, character, world, expand, continue, dialogue, critique, line-edit, pacing, voice, prose-grade, read-aloud)
 
-All 21 skills built. `projects/test-book/` is a worked smoke-test example.
+All 21 skills built. `examples/test-book/` is a worked smoke-test example (kept out of `projects/` so `/cowrite` greets new writers instead of resuming the fixture).
 
 ## Full skill list
 
