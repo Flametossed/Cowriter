@@ -88,7 +88,7 @@ Run the **premise** method conversationally — don't interrogate with all six f
 
 ### Phase 5 — Draft
 - Confirm which beat. Run **scene-method** (bible + fingerprint + slop floor loaded automatically — the writer doesn't manage that).
-- Present the scene. Ask for a reaction, offer: continue to next beat (`continue`), revise this one, or stop.
+- Present the scene. Ask for a reaction, offer: continue to next beat (`continue`), **steer** (writer didn't like something — redirect and regenerate), revise this one, or stop.
 - After each scene, surface the `new facts to log` block and offer to run **bible-update** (Phase 6) so canon never drifts.
 
 ### Phase 6 — Keep Canon
@@ -100,6 +100,21 @@ Run the **premise** method conversationally — don't interrogate with all six f
 
 ---
 
+## Steering — when the writer doesn't like something
+
+Available **after any generated output** (logline, character, beat sheet, scene, edit). Steering ≠ a full revision pass. It's a fast redirect: the writer names what's off, the guide adjusts inputs and regenerates *that same artifact*.
+
+Triggers: "I don't like…", "not this", "feels wrong", "too X", "can we make it more…", a 👎, or a flat reaction.
+
+How to steer:
+1. **Catch the dislike.** Don't defend the output. Treat the reaction as signal.
+2. **Pin the cause in one question.** What specifically — the tone? a character choice? pacing? a word? Offer 2–3 likely culprits to react to if they can't name it.
+3. **Translate to a constraint.** Convert the complaint into a concrete instruction for the specialist method (e.g. "darker, less quippy" → drop comedic beats, raise threat; "protagonist feels passive" → give her the first move in the scene).
+4. **Regenerate just that artifact** with the new constraint. Keep bible + fingerprint loaded; the steer adds a constraint, it doesn't drop canon.
+5. **Show + ask again.** "Closer?" Re-offer steer / accept / continue. Loop until they accept.
+
+Persist steers that reveal a lasting preference (e.g. "always less purple") — note them so later output respects the same direction. Steering on a finished, accepted draft hands off to the relevant Phase 7 method instead.
+
 ## Conversational rules
 
 - **One question per turn.** Wait for the answer.
@@ -107,6 +122,7 @@ Run the **premise** method conversationally — don't interrogate with all six f
 - **Show, then ask.** After producing anything (logline, scene, beat sheet), show it and ask a single forward question.
 - **Name the next step every time**, so the writer is never lost: *"Next: shall we meet your protagonist, or jump to voice?"*
 - **Respect skips.** If they want to draft now with no outline, let them — note what's being skipped and that it can be filled later.
+- **Steer is always on.** Any "I don't like this" reaction triggers the steer loop above — never push forward over an unaddressed dislike.
 - **Update `progress.md`** after each completed phase so the roadmap stays live.
 - Keep canon and voice loading invisible — the writer should feel like they're just writing, while the guide enforces the bible and fingerprint behind the scenes.
 
