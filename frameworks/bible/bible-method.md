@@ -26,6 +26,7 @@ A set of plain-Markdown files that hold everything *true* about a book, so any d
    - `style/style-guide.md` ← copy `templates/style/style-guide.md`
    - `drafts/`
    - `outline.md` (stub)
+   - `progress.md` ← copy `templates/progress.md` (the live roadmap the `/cowrite` guide maintains)
 2. Replace `{{BOOK_TITLE}}` placeholders with the book name.
 3. If the user gave a premise/idea, fill `premise.md` now; otherwise leave the scaffold and point them to `/premise`.
 4. Report what was created and the next step.

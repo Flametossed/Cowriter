@@ -47,7 +47,17 @@ style-fingerprint (learned from your samples)
 
 This keeps the quality layer from sanding off intentional voice. If your style deliberately uses fragments or heavy em-dashes, the fingerprint wins over the generic slop rule.
 
-## Start a new book
+## Start here: `/cowrite`
+
+**The front door.** You don't need to learn the skill names. Run:
+
+```
+/cowrite
+```
+
+It detects where your project is, then walks you through it one step at a time — premise → characters → voice → outline → drafting → revision — routing to the right tool automatically and keeping your story bible and voice consistent behind the scenes. Run it again anytime to pick up where you left off; each book's `progress.md` is the live roadmap.
+
+## Or drive the skills directly (advanced)
 
 1. `/bible-init <book-name>` — scaffolds `projects/<book-name>/` from templates.
 2. Drop writing samples into `projects/<book-name>/style/samples/`.
@@ -66,12 +76,13 @@ This keeps the quality layer from sanding off intentional voice. If your style d
 - [x] Vertical slice (outline → scene → slop-check → continuity)
 - [x] Remaining skills (premise, character, world, expand, continue, dialogue, critique, line-edit, pacing, voice, prose-grade, read-aloud)
 
-All 20 skills built. `projects/test-book/` is a worked smoke-test example.
+All 21 skills built. `projects/test-book/` is a worked smoke-test example.
 
 ## Full skill list
 
 | Phase | Skills |
 |-------|--------|
+| **Guide (start here)** | **`cowrite`** — conducts all of the below |
 | Bible / memory | `bible-init` · `bible-update` · `bible-check` |
 | Craft / quality | `style-learn` · `slop-check` |
 | Pre-writing | `premise` · `character` · `world` · `outline` |
