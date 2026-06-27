@@ -13,7 +13,22 @@
 1. Read all samples. If mixed authors/modes, note it; don't blend incompatible voices — ask which to prioritize.
 2. Measure, don't vibe. Where possible give numbers + a representative quote.
 3. Separate **signature** (do this) from **avoids** (never do this).
-4. Write the fingerprint using the schema below.
+4. **Derive the scene-length tendency** (see below) — voice decides how long scenes run; the length system reads this.
+5. Write the fingerprint using the schema below.
+
+## Deriving the scene-length block
+This feeds [length-method.md](length-method.md): the average scene length is a property of the voice, not a separate guess. Fill `avg_scene_words` and `tendency`:
+
+- **Measured** (`derived_from: measured`) — if samples contain whole scenes with breaks, measure actual scene word counts and average them. Highest confidence.
+- **Inferred** (`derived_from: inferred`) — usual case (samples are passages, not full scenes). Read the prose-density signals you already measured (sentence/paragraph length, description load, interiority, register) and map to a tendency:
+
+  | Voice | tendency | avg_scene_words |
+  |-------|----------|----------------:|
+  | spare / minimalist (short sentences, white space, little description) | spare | ~1.2k–1.8k |
+  | clean / standard (most commercial prose) | standard | ~2k–2.5k |
+  | lush / maximalist (long sentences, dense description, heavy interiority) | lush | ~3k–4k |
+
+Inferred is a **default the writer confirms at Blueprint**, never silently imposed. Set `confidence` honestly (`low`/`medium`/`high`).
 
 ## Output schema → `style-fingerprint.md`
 
@@ -27,6 +42,13 @@ Source samples: <list>   Mode: match-mine | emulate-comp | mixed
 - Dialogue ratio: ~<n>% of text
 - Fragment usage: none | occasional | frequent
 - Em-dash / semicolon frequency: <per 1000 words>
+
+## Scene length
+<!-- Feeds length-method.md. Voice sets how long scenes run. -->
+- avg_scene_words: <n>
+- tendency: spare | standard | lush
+- derived_from: measured | inferred
+- confidence: low | medium | high
 
 ## Voice
 - POV + tense: <...>

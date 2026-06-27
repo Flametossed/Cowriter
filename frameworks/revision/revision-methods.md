@@ -35,8 +35,12 @@ Where the draft drags or rushes.
    - rushed turning points (huge story-moment given too few words) → expand.
    - sag zones (long stretch of low tension, usually mid-book) → cut, intercut, or inject conflict.
    - scene/sequel imbalance — all action no reflection (numbing) or all reflection no action (inert).
-3. Check **micro-pacing** too: paragraph + sentence length as a tension lever (short = fast, long = slow). Mismatch (long languid sentences in a chase) is a flag.
-4. Output: the tension map + specific cut/expand/reorder calls.
+3. **Length drift** (read alongside tension; see [length-method.md](../craft/length-method.md)). Compare each scene's actual words to its `outline.md` budget:
+   - over budget by **>25%** → trim or split; flag any beat where bloat is dragging pace.
+   - under budget *and* reading as synopsis → it's summary, not a scene; expand or merge.
+   - check the **projected final length** in `progress.md` — if pace diverges from plan, name the reflow call (hold target / cut scenes / raise target).
+4. Check **micro-pacing** too: paragraph + sentence length as a tension lever (short = fast, long = slow). Mismatch (long languid sentences in a chase) is a flag.
+5. Output: the tension map + length-vs-budget deltas + specific cut/expand/reorder calls.
 
 ---
 

@@ -24,6 +24,10 @@
 - **Tone:** <!-- e.g. wry, bleak, propulsive, elegiac -->
 - **Audience:**
 
+## Length target
+<!-- One integer (e.g. 90000), the source of truth for the whole length budget. See length-method.md for category defaults; genre/comps above should nudge it. Cascades to per-beat budgets in outline.md and is tracked in progress.md. A compass, not a cap. -->
+- **Target words:**
+
 ## Promise to the reader
 <!-- What experience does opening this book promise? Pay it off. -->
 
