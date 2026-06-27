@@ -72,6 +72,7 @@ Run the **premise** method conversationally — don't interrogate with all six f
 - Reflect their seed back as a draft logline. Ask: does this engine excite you?
 - One question at a time: stakes → obstacle → what's it really *about* (theme) → tone/comps.
 - For a stuck writer, offer 2–3 concrete options to react to ("Is the threat external, like X, or internal, like Y?"). Reaction is easier than invention.
+- Once genre/comps are set, set the **Length target** — offer the category default from `length-method.md` ("Adult fantasy usually runs 100–120k — aim for 110k?"), let them name a number. One integer into `premise.md`. It's a compass; reassure it can move.
 - Write `premise.md`. Tick Spark in `progress.md`. Show the finished logline; ask to proceed to People & Place.
 
 ### Phase 2 — People & Place
@@ -84,14 +85,17 @@ Run the **premise** method conversationally — don't interrogate with all six f
 - **Samples path:** tell them to drop 1–3 passages in `style/samples/` (their own = `mine-*`, an author = `comp-*`), then run **style-learn**.
 - **No samples:** co-author the `style-guide.md` knobs via a few quick questions (POV, tense, sparse vs lush, comps), and note a fingerprint can be learned later.
 - Show the resulting style in one line ("close first-person, spare, elegiac — landing long sentences on short ones"). Confirm it feels right.
+- Note the derived **scene-length** the fingerprint implies ("spare voice → ~1.5k scenes"). This feeds the outline's length budget at Blueprint — confirm or let them set the avg.
 
 ### Phase 4 — Blueprint (outline)
 - Offer the structures (default 3-act) with a one-line gloss each; recommend based on genre/comps from the premise.
 - Run **outline-method**. Present the beat sheet, flag the weakest beat, ask if they want to adjust before drafting.
+- **Cascade the length budget** (`length-method.md`): from the premise target + the fingerprint's avg scene length, show the per-act split and scene count ("90k → 22.5k / 45k / 22.5k, ~36 scenes"), with per-beat budgets/tiers. Let them nudge any beat; remaining beats reflow. If voice isn't set, use the register default and confirm the avg.
 
 ### Phase 5 — Draft
-- Confirm which beat. Run **scene-method** (bible + fingerprint + slop floor loaded automatically — the writer doesn't manage that).
+- Confirm which beat. Run **scene-method** (bible + fingerprint + slop floor + the beat's length tier loaded automatically — the writer doesn't manage that).
 - Present the scene. Ask for a reaction, offer: continue to next beat (`continue`), **steer** (writer didn't like something — redirect and regenerate), revise this one, or stop.
+- After each scene: log actual words vs budget in `progress.md` → Length and surface the **projected final length** in one line ("23k written, on pace for ~94k vs 90k target"). On material drift, offer the reflow choice (hold / cut / raise target) — don't nag, just surface it.
 - After each scene, surface the `new facts to log` block and offer to run **bible-update** (Phase 6) so canon never drifts.
 
 ### Phase 6 — Keep Canon

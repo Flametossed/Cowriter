@@ -16,8 +16,16 @@
 <!-- guide writes: current phase + the immediate next step -->
 - 
 
+## Length
+<!-- See length-method.md. Updated each scene drafted. Projection is the headline. -->
+- **Target:** 90,000
+- **Written:** 0  (0%)
+- **Projected — plan:** 90,000  (on plan)
+- **Projected — pace:** — (no scenes drafted yet)
+- **Drift:** on track
+
 ## Draft log
-<!-- one line per scene drafted: file — beat — status (draft / revised / canon-logged) -->
+<!-- one line per scene drafted: file — beat — words/budget — status (draft / revised / canon-logged) -->
 - 
 
 ## Notes / decisions

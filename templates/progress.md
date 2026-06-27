@@ -16,8 +16,16 @@
 <!-- guide writes: current phase + the immediate next step -->
 - 
 
+## Length
+<!-- See length-method.md. Updated each scene drafted. Projection is the headline. -->
+- **Target:** <!-- from premise.md, e.g. 90000 -->
+- **Written:** <!-- running total words -->  (<!-- % of target -->)
+- **Projected — plan:** <!-- written + remaining scene budgets; = target while on plan -->
+- **Projected — pace:** <!-- (written / scenes done) × total scenes -->
+- **Drift:** <!-- on track | over | under, + the reflow decision if any -->
+
 ## Draft log
-<!-- one line per scene drafted: file — beat — status (draft / revised / canon-logged) -->
+<!-- one line per scene drafted: file — beat — words/budget — status (draft / revised / canon-logged) -->
 - 
 
 ## Notes / decisions

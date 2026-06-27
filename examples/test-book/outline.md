@@ -1,5 +1,6 @@
 # Outline — The Lamplighter's Daughter
 Structure: 3-act
+Length: 90,000 target · Act I 22.5k / Act II 45k / Act III 22.5k · avg scene ~1,500 (spare voice) → ~60 scenes
 Theme: Light hides as much as it shows. Sable's want = keep her mother's flame; need = let it go to face her grief; lie = "the light keeps her with me."
 
 ## Act I — Setup
@@ -9,10 +10,12 @@ Theme: Light hides as much as it shows. Sable's want = keep her mother's flame; 
 - Turn: routine grief (−) → first sign the dead are crossing (−−, dread spikes).
 - Sets up: ghosts crossing flame→living; the mother's lamp. | Pays off: later choice to douse it.
 - POV/location: Sable / her room, Candle Street.
+- Budget: ~1,800 | Tier: standard (opening; slightly above avg to establish world + voice)
 
 ### Beat 2 — The Guild's order
 - The Guild votes to douse the city. Old Pell dissents. Sable realizes dousing *frees* ghosts.
 - Turn: false safety (+) → the cure is the catastrophe (−).
+- Budget: ~1,500 | Tier: standard
 
 ## Act II — Confrontation
 ### Beat 3–6 (stubs)

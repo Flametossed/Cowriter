@@ -6,5 +6,5 @@ description: Map a draft's tension curve scene by scene and flag drags, rushed t
 # pacing
 
 1. Break the draft into beats; tag tension (1–5), function, and length each.
-2. Follow the **pacing** section of [revision-methods.md](../../../frameworks/revision/revision-methods.md).
-3. Output the tension map + specific cut / expand / reorder calls.
+2. Follow the **pacing** section of [revision-methods.md](../../../frameworks/revision/revision-methods.md), including **length drift** vs `outline.md` budgets (>25% over → trim/split; synopsis-thin → expand) and the `progress.md` projection.
+3. Output the tension map + length-vs-budget deltas + specific cut / expand / reorder calls.

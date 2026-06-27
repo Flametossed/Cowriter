@@ -8,6 +8,12 @@ Source samples: mine-01.md   Mode: match-mine
 - Fragment usage: occasional, controlled ("Two taps, a drag.")
 - Em-dash / semicolon frequency: low; commas do the work of accretion
 
+## Scene length
+- avg_scene_words: 1500
+- tendency: spare
+- derived_from: inferred
+- confidence: medium
+
 ## Voice
 - POV + tense: first person, past tense
 - Narrative distance: deep interiority, confessional

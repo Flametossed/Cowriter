@@ -24,6 +24,9 @@ In gas-lit Verran, the dead linger in flame and only Sable, daughter of the city
 - **Tone:** elegiac, hushed, dread building under stillness
 - **Audience:** adult/upmarket fantasy
 
+## Length target
+- **Target words:** 90000  <!-- upmarket gaslamp fantasy, single POV; spare voice → ~1.5k scenes → ~60 scenes -->
+
 ## Promise to the reader
 A melancholy, atmospheric haunting where the magic system *is* the grief.
 

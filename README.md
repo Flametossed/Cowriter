@@ -1,10 +1,11 @@
 # Cowriter
 
-A workspace for AI-assisted creative writing of **long-form fiction** — from the first spark of an idea through a revised draft. It exists to fix the three things AI writing fails at:
+A workspace for AI-assisted creative writing of **long-form fiction** — from the first spark of an idea through a revised draft. It exists to fix the four things AI writing fails at:
 
 1. **Originality of concept** — an upstream *ideation stage* ([brainstorm/](brainstorm/)) that diverges hard, then twists the idea off the statistical center, so the book doesn't start from a generic premise.
 2. **Consistency** — a living *story bible* every skill reads from and writes back to, so canon never drifts.
 3. **Quality** — a *craft layer* (a slop kill-list + a sample-driven style fingerprint) so prose doesn't read like generic AI output.
+4. **Length** — a top-down *word budget* ([length-method.md](frameworks/craft/length-method.md)) that cascades a target across acts → beats → scenes, with scene length derived from the voice, so the draft neither rushes nor bloats. The projected final length is tracked every scene.
 
 The ideation stage was formerly the separate **Brainstormer** tool; it now lives inside this workspace as [brainstorm/](brainstorm/), wired so `/brainstorm` hands a locked premise straight to `/cowrite`.
 
@@ -27,7 +28,7 @@ Cowriter/
 │   └── sessions/            #   your brainstorm logs live here
 ├── frameworks/              # PORTABLE method content (the real meat)
 │   ├── bible/               # how to build/update/query canon
-│   ├── craft/               # slop-markers + style fingerprint method
+│   ├── craft/               # slop-markers + style fingerprint + length budget
 │   ├── prewriting/          # premise, character, world, outline methods
 │   ├── drafting/            # scene, expand, continue, dialogue methods
 │   └── revision/            # continuity, critique, line-edit, pacing methods
