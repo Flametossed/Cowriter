@@ -10,6 +10,7 @@
 
 | # | Phase | What happens | Specialist method |
 |---|-------|--------------|-------------------|
+| − | **Ideate** *(optional, upstream)* | Invent an original concept from nothing/a vibe — diverge → twist → premise → beats | `brainstorm/` toolkit → `/brainstorm` |
 | 0 | **Setup** | Pick/create the book project | `bible-method` → bible-init |
 | 1 | **Spark** | Find the premise — logline, theme, conflict | `prewriting-methods` → premise |
 | 2 | **People & Place** | Lead characters + essential setting | `prewriting-methods` → character, world |
@@ -63,6 +64,8 @@ Keep it short. No walls of text. The writer should always face one clear, small 
 
 ### Phase 0 — Setup (new book)
 Warm open. Ask for a working title (or offer to start untitled). Then ask the **one** seed question: *"In a sentence or two — what's the idea? Even a vibe, a what-if, or an image is enough."* Scaffold via bible-init. Create `progress.md` from template. Move to Spark.
+
+- **No idea yet, or it feels generic / "I don't know what to write"?** Offer the upstream **Ideate** stage: *"Want to invent the concept first? `/brainstorm` runs a divergence→twist→premise pipeline built to dodge generic AI ideas, then drops the premise and a subverted beat sketch straight into your project — `/cowrite` resumes from there."* The brainstorm toolkit lives in [brainstorm/](../../brainstorm/); its `handoff` writes `bible/premise.md` + `outline.md` into `projects/<book>/`, landing the writer at **Phase 4 (Blueprint)** with Spark already done. Offer it; don't force it — a writer who already has a premise skips it.
 
 ### Phase 1 — Spark (premise)
 Run the **premise** method conversationally — don't interrogate with all six fields at once. Sequence:
