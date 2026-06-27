@@ -1,9 +1,12 @@
 # Cowriter
 
-A workspace for AI-assisted creative writing of **long-form fiction**. It exists to fix the two things AI writing fails at over a novel's length:
+A workspace for AI-assisted creative writing of **long-form fiction** — from the first spark of an idea through a revised draft. It exists to fix the three things AI writing fails at:
 
-1. **Consistency** — a living *story bible* every skill reads from and writes back to, so canon never drifts.
-2. **Quality** — a *craft layer* (a slop kill-list + a sample-driven style fingerprint) so prose doesn't read like generic AI output.
+1. **Originality of concept** — an upstream *ideation stage* ([brainstorm/](brainstorm/)) that diverges hard, then twists the idea off the statistical center, so the book doesn't start from a generic premise.
+2. **Consistency** — a living *story bible* every skill reads from and writes back to, so canon never drifts.
+3. **Quality** — a *craft layer* (a slop kill-list + a sample-driven style fingerprint) so prose doesn't read like generic AI output.
+
+The ideation stage was formerly the separate **Brainstormer** tool; it now lives inside this workspace as [brainstorm/](brainstorm/), wired so `/brainstorm` hands a locked premise straight to `/cowrite`.
 
 ## How it's meant to be used
 
@@ -18,6 +21,10 @@ Everything here is **dual-use**:
 Cowriter/
 ├── README.md
 ├── .claude/skills/          # Claude Code entry points (thin wrappers)
+├── brainstorm/              # IDEATION stage (the former Brainstormer)
+│   ├── frameworks/          #   spark, twist, plot, beat, originality methods
+│   ├── templates/           #   session-log scaffold
+│   └── sessions/            #   your brainstorm logs live here
 ├── frameworks/              # PORTABLE method content (the real meat)
 │   ├── bible/               # how to build/update/query canon
 │   ├── craft/               # slop-markers + style fingerprint method
@@ -57,6 +64,14 @@ This keeps the quality layer from sanding off intentional voice. If your style d
 
 It detects where your project is, then walks you through it one step at a time — premise → characters → voice → outline → drafting → revision — routing to the right tool automatically and keeping your story bible and voice consistent behind the scenes. Run it again anytime to pick up where you left off; each book's `progress.md` is the live roadmap.
 
+**No idea yet?** Start one stage earlier:
+
+```
+/brainstorm
+```
+
+It invents an original concept — many sparks, then twist off the generic default, then a pressure-tested premise + subverted beat sketch — and writes the result straight into `projects/<book>/`. From there `/cowrite` resumes at the outline. (Already have an idea? `/brainstorm <your idea>` starts from it; or skip straight to `/cowrite`.)
+
 ## Or drive the skills directly (advanced)
 
 1. `/bible-init <book-name>` — scaffolds `projects/<book-name>/` from templates.
@@ -82,6 +97,7 @@ All 21 skills built. `examples/test-book/` is a worked smoke-test example (kept 
 
 | Phase | Skills |
 |-------|--------|
+| **Ideation (upstream)** | **`brainstorm`** — invent an original concept, then hand off to `/cowrite` (toolkit in [brainstorm/](brainstorm/)) |
 | **Guide (start here)** | **`cowrite`** — conducts all of the below |
 | Bible / memory | `bible-init` · `bible-update` · `bible-check` |
 | Craft / quality | `style-learn` · `slop-check` |
