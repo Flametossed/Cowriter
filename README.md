@@ -7,6 +7,8 @@ A workspace for AI-assisted creative writing of **long-form fiction** — from t
 3. **Quality** — a *craft layer* (a slop kill-list + a sample-driven style fingerprint) so prose doesn't read like generic AI output.
 4. **Length** — a top-down *word budget* ([length-method.md](frameworks/craft/length-method.md)) that cascades a target across acts → beats → scenes, with scene length derived from the voice, so the draft neither rushes nor bloats. The projected final length is tracked every scene.
 
+Plus a **brain** ([brain-method.md](frameworks/guide/brain-method.md)) — a hard-capped `brain.md` that learns the writer across books (standing rules, lasting steers, workflow habits) and issues load directives that cut token cost for every skill. Every skill loads it first; it decides what else is worth loading.
+
 The ideation stage was formerly the separate **Brainstormer** tool; it now lives inside this workspace as [brainstorm/](brainstorm/), wired so `/brainstorm` hands a locked premise straight to `/cowrite`.
 
 ## How it's meant to be used
@@ -21,6 +23,7 @@ Everything here is **dual-use**:
 ```
 Cowriter/
 ├── README.md
+├── brain.md                 # writer-level memory + load directives (hard-capped, created on first use)
 ├── .claude/skills/          # Claude Code entry points (thin wrappers)
 ├── brainstorm/              # IDEATION stage (the former Brainstormer)
 │   ├── frameworks/          #   spark, twist, plot, beat, originality methods
@@ -100,6 +103,7 @@ All 21 skills built. `examples/test-book/` is a worked smoke-test example (kept 
 |-------|--------|
 | **Ideation (upstream)** | **`brainstorm`** — invent an original concept, then hand off to `/cowrite` (toolkit in [brainstorm/](brainstorm/)) |
 | **Guide (start here)** | **`cowrite`** — conducts all of the below |
+| Writer memory | **`brain`** — capped writer profile + token-saving load directives; read first by every skill |
 | Bible / memory | `bible-init` · `bible-update` · `bible-check` |
 | Craft / quality | `style-learn` · `slop-check` |
 | Pre-writing | `premise` · `character` · `world` · `outline` |

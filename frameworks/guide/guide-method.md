@@ -26,6 +26,8 @@ Phases 5–6–7 loop per scene/chapter. Earlier phases can be revisited anytime
 
 ## State detection (run this FIRST, every invocation)
 
+**Load `brain.md` before anything else** (workspace root; see [brain-method.md](brain-method.md)). It's ≤800 words and it tells you what this writer wants and what you can skip loading. Its Efficiency directives prune every context stack below; its Writer/Steers lines apply as standing constraints. Missing file → create from template, move on silently.
+
 Don't ask the writer where they are — **look**. Inspect the project and infer the phase:
 
 1. **No `projects/<book>/`** (or user names a new book) → **Phase 0**.
@@ -120,7 +122,7 @@ How to steer:
 4. **Regenerate just that artifact** with the new constraint. Keep bible + fingerprint loaded; the steer adds a constraint, it doesn't drop canon.
 5. **Show + ask again.** "Closer?" Re-offer steer / accept / continue. Loop until they accept.
 
-Persist steers that reveal a lasting preference (e.g. "always less purple") — note them so later output respects the same direction. Steering on a finished, accepted draft hands off to the relevant Phase 7 method instead.
+Persist steers that reveal a lasting preference (e.g. "always less purple") — write them to `brain.md` per [brain-method.md](brain-method.md) (Steers section, one line, provenance `steered`) so every later skill respects the same direction automatically. Steering on a finished, accepted draft hands off to the relevant Phase 7 method instead.
 
 ## Conversational rules
 
@@ -131,6 +133,7 @@ Persist steers that reveal a lasting preference (e.g. "always less purple") — 
 - **Respect skips.** If they want to draft now with no outline, let them — note what's being skipped and that it can be filled later.
 - **Steer is always on.** Any "I don't like this" reaction triggers the steer loop above — never push forward over an unaddressed dislike.
 - **Update `progress.md`** after each completed phase so the roadmap stays live.
+- **Feed the brain.** When a capture trigger fires (explicit "always/never", a steer that sticks, a correction landing twice, a habit on its third session, an artifact going stable) — write it to `brain.md` per [brain-method.md](brain-method.md) with a one-line confirm. The writer never manages the file.
 - Keep canon and voice loading invisible — the writer should feel like they're just writing, while the guide enforces the bible and fingerprint behind the scenes.
 
 ## Handing off vs. doing inline
