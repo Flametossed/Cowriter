@@ -5,10 +5,10 @@ description: Draft a single scene from an outline beat, constrained by the story
 
 # scene
 
-Draft a bible-aware, voice-aware scene.
+Draft a bible-aware, voice-aware scene. Fiction track — non-fiction section drafting lives in [nonfiction-method.md](../../../frameworks/nonfiction/nonfiction-method.md).
 
 1. Get the beat (from `outline.md` or the user's ask).
-2. Load the context stack per [scene-method.md](../../../frameworks/drafting/scene-method.md):
+2. Load the context stack per [scene-method.md](../../../frameworks/drafting/scene-method.md) (the fiction column of [context-map.md](../../../frameworks/core/context-map.md)):
    - bible: [canon-facts + relevant character/world entries]
    - voice: `style/style-fingerprint.md` → `style/style-guide.md`
    - quality floor: [slop-markers.md](../../../frameworks/craft/slop-markers.md) minus this book's allowed exceptions

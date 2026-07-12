@@ -1,6 +1,6 @@
 # Style Fingerprint — schema + method
 
-> How to turn raw writing **samples** into a measurable, paste-ready style spec. Used by `style-learn`. Output is written to `projects/<book>/style/style-fingerprint.md`.
+> How to turn raw writing **samples** into a measurable, paste-ready style spec. Used by `style-learn`. Output is written to the workspace's `style/style-fingerprint.md` — `projects/<name>/style/` for a book or non-fiction project, or `contexts/<name>/style/` for a saved persona (work-email voice, newsletter voice). For non-fiction, the scene-length block reads as section length.
 
 > **Authority:** the fingerprint is the *top* of the stack. Where it conflicts with `style-guide.md` or `slop-markers.md`, the fingerprint wins — it's evidence of how the target voice actually behaves.
 

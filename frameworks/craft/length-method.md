@@ -104,6 +104,26 @@ Never silently re-cap. Reflow is a recalculation the writer approves.
 
 ---
 
+## Non-fiction cascade
+
+Same discipline, one layer flatter: **target → sections** (no act layer, no tiers). Target lives in `brief.md` → **Length target**; per-section budgets live in `outline.md`.
+
+Form-aware defaults (offer, don't impose — the writer or the spec names the real number):
+
+| Form | Words |
+|------|------:|
+| Email / letter | 100–400 |
+| Blog post | 800–1,500 |
+| Article | 1,000–2,500 |
+| Essay | 1,500–3,000 |
+| Guide / long-form | 3,000–6,000 |
+| Marketing / landing copy | 200–800 |
+| Report / proposal | per spec — ask |
+
+Cascade: weight sections by argument load, not evenly — the core argument section gets room, transitions stay lean. Where a fingerprint exists, its density still applies (a spare voice means fewer words per section for the same job). Drift rule is the same compass-not-cage: a section >25% over budget is a pacing flag, a section reading like a summary of itself gets expanded or merged.
+
+---
+
 ## Step 6 — Hand-offs
 
 - **`pacing` (revision)** owns drift *after* drafting. A scene over budget by **>25%** is a pacing flag → trim/cut; a scene under budget that reads as synopsis → expand (it's summary, not a scene). Length drift and tension drift are read together.

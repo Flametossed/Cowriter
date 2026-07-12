@@ -1,13 +1,21 @@
 # Cowriter
 
-A workspace for AI-assisted creative writing of **long-form fiction** — from the first spark of an idea through a revised draft. It exists to fix the four things AI writing fails at:
+A co-writer for **everything you write — novels to emails**. One front door (`/cowrite`) routes three tracks:
+
+- **Quick** — emails, dispute letters, replies, short posts. Zero setup: ≤2 questions → draft → steer. Recurring situations can be saved as lightweight `contexts/<name>/` for continuity ([quick-method.md](frameworks/guide/quick-method.md)).
+- **Non-fiction** — articles, essays, guides, blog/marketing copy, reports, proposals. One lightweight project shape (`brief.md` + `facts.md` + `outline.md`), differentiated by form ([nonfiction-method.md](frameworks/nonfiction/nonfiction-method.md)).
+- **Fiction** — the original long-form pipeline, unchanged.
+
+What every track loads is defined once in [context-map.md](frameworks/core/context-map.md); the craft layer (slop kill-list, style fingerprint, revision passes) and the brain are shared by all three.
+
+The fiction track runs from the first spark of an idea through a revised draft, and exists to fix the four things AI writing fails at:
 
 1. **Originality of concept** — an upstream *ideation stage* ([brainstorm/](brainstorm/)) that diverges hard, then twists the idea off the statistical center, so the book doesn't start from a generic premise.
 2. **Consistency** — a living *story bible* every skill reads from and writes back to, so canon never drifts.
 3. **Quality** — a *craft layer* (a slop kill-list + a sample-driven style fingerprint) so prose doesn't read like generic AI output.
 4. **Length** — a top-down *word budget* ([length-method.md](frameworks/craft/length-method.md)) that cascades a target across acts → beats → scenes, with scene length derived from the voice, so the draft neither rushes nor bloats. The projected final length is tracked every scene.
 
-Plus a **brain** ([brain-method.md](frameworks/guide/brain-method.md)) — a hard-capped `brain.md` that learns the writer across books (standing rules, lasting steers, workflow habits) and issues load directives that cut token cost for every skill. Every skill loads it first; it decides what else is worth loading.
+Plus a **brain** ([brain-method.md](frameworks/guide/brain-method.md)) — a hard-capped `brain.md` that learns the writer across projects and contexts (standing rules, lasting steers, workflow habits) and issues load directives that cut token cost for every skill. Every skill loads it first; it decides what else is worth loading.
 
 The ideation stage was formerly the separate **Brainstormer** tool; it now lives inside this workspace as [brainstorm/](brainstorm/), wired so `/brainstorm` hands a locked premise straight to `/cowrite`.
 

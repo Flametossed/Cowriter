@@ -2,6 +2,8 @@
 
 > Portable. Draft a single scene from a beat, constrained by the bible (canon) and the craft layer (voice + quality). This is where consistency and quality meet the page.
 
+Fiction's drafting unit — the stack below is the fiction column of [context-map.md](../core/context-map.md). Non-fiction section drafting lives in [nonfiction-method.md](../nonfiction/nonfiction-method.md).
+
 ## Load before writing (the context stack)
 0. **Brain** — `brain.md` at workspace root ([brain-method.md](../guide/brain-method.md)). Load first; its Efficiency directives may prune items 2–4 below (e.g. "fingerprint locked — skip samples"), and its Writer/Steers lines apply as standing constraints.
 1. **The beat** — from `outline.md` (or a one-line ask). What must this scene accomplish?

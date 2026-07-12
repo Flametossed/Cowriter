@@ -6,7 +6,29 @@
 
 ---
 
-## The pipeline (phases)
+## Three tracks, one front door
+
+| Track | For | Persistence | Method |
+|-------|-----|-------------|--------|
+| **Quick** | emails, letters, disputes, replies, short posts | none (optional saved `contexts/<name>/`) | [quick-method.md](quick-method.md) |
+| **Non-fiction** | articles, essays, guides, blog, marketing, reports, proposals | `projects/<name>/` with `brief.md` marker | [nonfiction-method.md](../nonfiction/nonfiction-method.md) |
+| **Fiction** | novels, stories | `projects/<book>/` with `bible/` marker | the pipeline below |
+
+What to load per track is defined once in [context-map.md](../core/context-map.md).
+
+## Mode detection (run before state detection)
+
+1. **Resume signals win.** If the writer names existing work, or `projects/`/`contexts/` contains a match, resume it. Read the mode from marker files — never ask: `bible/` → fiction; `brief.md` at project root → non-fiction; under `contexts/` → quick context.
+2. **Otherwise the opening message classifies naturally:**
+   - a message/short document to a real recipient ("email to my landlord", "reply to this", "cover letter", "dispute letter") → **quick**;
+   - story/novel/book/scene/chapter/character language → **fiction**;
+   - article/essay/post/guide/report/proposal/copy about a topic → **non-fiction**.
+3. **Ambiguous** → ask exactly **one** disambiguating question, phrased as options ("One-off piece I should just draft with you, or a bigger project we'll build up?"). Never present a mode menu on a clear ask.
+4. **Escalation:** a quick task that keeps growing (structure appearing, >~1,000 words) → offer **once** to promote it to a non-fiction project (quick-method, Escalation).
+
+Quick tasks skip state detection entirely — go straight to quick-method. Non-fiction state detection mirrors the fiction rules using its own phases (nonfiction-method). The rest of this file is the **fiction track**; Steering and Conversational rules below apply to every track.
+
+## The fiction pipeline (phases)
 
 | # | Phase | What happens | Specialist method |
 |---|-------|--------------|-------------------|
@@ -30,7 +52,7 @@ Phases 5–6–7 loop per scene/chapter. Earlier phases can be revisited anytime
 
 Don't ask the writer where they are — **look**. Inspect the project and infer the phase:
 
-1. **No `projects/<book>/`** (or user names a new book) → **Phase 0**.
+1. **No `projects/<book>/`** and the ask is fiction (or user names a new book) → **Phase 0**.
 2. `bible/premise.md` logline empty or still has `<!-- ... -->` placeholders → **Phase 1**.
 3. `bible/characters.md` has no real entry (only template) → **Phase 2** (optional — see below).
 4. `style/style-fingerprint.md` missing → **Phase 3**.

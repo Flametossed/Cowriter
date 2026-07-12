@@ -10,7 +10,11 @@
 
 ## critique — developmental (the macro pass)
 
-Story-level feedback. The highest-leverage pass; do it first.
+Big-picture feedback. The highest-leverage pass; do it first. Load the **Purpose** and **Facts** slots per [context-map.md](../core/context-map.md) — fiction: `bible/premise.md` + character arcs; non-fiction: `brief.md` + `facts.md`.
+
+**Non-fiction lens** — assess instead: argument logic (does each section's claim follow?), evidence sufficiency (does every claim have a leg in `facts.md`?), audience fit (register + assumed knowledge vs the brief), structure (does the order serve the goal?), thesis clarity (could the reader state it back?). Then output as in step 3 below.
+
+**Fiction lens:**
 
 1. Read the draft (scene, chapter, or whole) against `bible/premise.md` (theme, promise, conflict) and the relevant character arcs.
 2. Assess, in order of importance:

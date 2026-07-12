@@ -8,7 +8,7 @@
 
 ## What the brain is for (three jobs)
 
-1. **Learn the writer.** Standing rules ("never em-dashes"), lasting steers ("always less purple"), defaults (creativity dial 1.2). Things true across books, not per-book canon.
+1. **Learn the writer.** Standing rules ("never em-dashes"), lasting steers ("always less purple"), defaults (creativity dial 1.2). Things true across projects and contexts, not per-project canon.
 2. **Learn the workflow.** Observed habits: phases they skip, revision passes they actually run, how they like output presented, session rhythm.
 3. **Cut tokens.** Load directives that tell skills what to *skip*: stable artifacts not worth re-deriving, files not worth re-reading, context-stack items this writer never needs.
 
