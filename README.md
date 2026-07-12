@@ -1,121 +1,89 @@
 # Cowriter
 
-A co-writer for **everything you write — novels to emails**. One front door (`/cowrite`) routes three tracks:
+A co-writer for everything you write — a two-line email, a client report, or a novel. One front door, `/cowrite`, figures out which of those you're doing and gets you drafting fast, without you needing to learn 23 skill names.
 
-- **Quick** — emails, dispute letters, replies, short posts. Zero setup: ≤2 questions → draft → steer. Recurring situations can be saved as lightweight `contexts/<name>/` for continuity ([quick-method.md](frameworks/guide/quick-method.md)).
-- **Non-fiction** — articles, essays, guides, blog/marketing copy, reports, proposals. One lightweight project shape (`brief.md` + `facts.md` + `outline.md`), differentiated by form ([nonfiction-method.md](frameworks/nonfiction/nonfiction-method.md)).
-- **Fiction** — the original long-form pipeline, unchanged.
+## Three tracks, one front door
 
-What every track loads is defined once in [context-map.md](frameworks/core/context-map.md); the craft layer (slop kill-list, style fingerprint, revision passes) and the brain are shared by all three.
+`/cowrite` reads your opening ask (or the marker files in an existing project) and routes to one of three tracks. You never pick a mode explicitly — if it's genuinely unclear, it asks you one question, not a menu.
 
-The fiction track runs from the first spark of an idea through a revised draft, and exists to fix the four things AI writing fails at:
+| Track | For | What it creates |
+|---|---|---|
+| **Quick** | An email, a dispute letter, a reply, a short post | Nothing, by default. Draft happens in-chat after ≤2 questions. A recurring situation (an ongoing dispute, a work-email persona) can be saved as `contexts/<name>/` so the next reply remembers your position and tone. |
+| **Non-fiction** | An article, essay, guide, blog post, marketing copy, report, or proposal | `projects/<name>/` holding `brief.md` (thesis, audience, goal), `facts.md` (claims + sources — so nothing gets fabricated), and `outline.md` (sections with word budgets). One shape for all seven forms; a `form:` field in the brief is the only thing that changes. |
+| **Fiction** | A short story or novel | `projects/<book>/` with a living `bible/` (canon), `outline.md` (beats), and `drafts/`. The original pipeline, unchanged. |
 
-1. **Originality of concept** — an upstream *ideation stage* ([brainstorm/](brainstorm/)) that diverges hard, then twists the idea off the statistical center, so the book doesn't start from a generic premise.
-2. **Consistency** — a living *story bible* every skill reads from and writes back to, so canon never drifts.
-3. **Quality** — a *craft layer* (a slop kill-list + a sample-driven style fingerprint) so prose doesn't read like generic AI output.
-4. **Length** — a top-down *word budget* ([length-method.md](frameworks/craft/length-method.md)) that cascades a target across acts → beats → scenes, with scene length derived from the voice, so the draft neither rushes nor bloats. The projected final length is tracked every scene.
+Whichever track you're on, the same layer runs underneath: a quality floor that kills AI-writing tells, a style fingerprint learned from your own samples, and a memory (`brain.md`) that learns your standing rules and stops re-asking things you've already told it. That contract is defined once, in [`frameworks/core/context-map.md`](frameworks/core/context-map.md) — it's why adding two new tracks didn't mean building two new toolkits.
 
-Plus a **brain** ([brain-method.md](frameworks/guide/brain-method.md)) — a hard-capped `brain.md` that learns the writer across projects and contexts (standing rules, lasting steers, workflow habits) and issues load directives that cut token cost for every skill. Every skill loads it first; it decides what else is worth loading.
+## Get started
 
-The ideation stage was formerly the separate **Brainstormer** tool; it now lives inside this workspace as [brainstorm/](brainstorm/), wired so `/brainstorm` hands a locked premise straight to `/cowrite`.
+```
+/cowrite
+```
 
-## How it's meant to be used
+That's the whole interface. Tell it what you're writing — "an email to my landlord," "an article about remote work," "I want to write a novel" — and it takes it from there: one question at a time, output shown before the next one, and a steer loop the moment you don't like something (say so, and it fixes the actual thing, not a generic rewrite).
 
-Everything here is **dual-use**:
+No idea yet for a book? Start a stage earlier:
 
-- **As Claude Code skills** — invoke `/bible-init`, `/scene`, `/slop-check`, etc. in this workspace. Entry points live in `.claude/skills/`.
-- **As a portable prompt library** — the real method content lives in `frameworks/` as plain Markdown. Paste any of it into any AI chat (Claude.ai, ChatGPT, etc.) as a rules/context block. The `.claude/skills/*/SKILL.md` files are thin wrappers that point at these frameworks — no duplicated content.
+```
+/brainstorm
+```
+
+This diverges hard from the generic version of your idea, twists it off the statistical center, and hands a pressure-tested premise straight to `/cowrite`. Already have an idea? `/brainstorm <your idea>` starts from it.
+
+Resuming later, on any track, is the same command: `/cowrite`. It reads the project's `progress.md` and picks up where you stopped.
+
+## What's actually happening underneath
+
+- **The craft layer** (`frameworks/craft/`) — a slop kill-list ([`slop-markers.md`](frameworks/craft/slop-markers.md)) that catalogs the specific tells that make prose read like generic AI output, and a style-fingerprint schema that turns your own writing samples into a measurable voice spec. Authority order when they'd conflict: **style-fingerprint > style-guide > brain > slop-markers** — your deliberate voice always beats the generic floor.
+- **The brain** (`brain.md`, [`brain-method.md`](frameworks/guide/brain-method.md)) — a single file, hard-capped at 100 lines, that every skill loads first. It remembers standing rules ("never use em-dashes"), steers that stuck, and workflow habits, and issues load directives that prune what else gets pulled into context — the mechanism that keeps this from getting slow as projects pile up.
+- **The bible** (fiction only, `frameworks/bible/`) — a living canon file per book, so a detail set in chapter 2 doesn't quietly drift by chapter 12.
+- **Facts** (non-fiction's version of the bible, `facts.md`) — numbered claims with sources and a status (verified / asserted / needs-check). Drafting can only assert what's in here or common knowledge; nothing gets invented and passed off as sourced.
+
+Everything above is portable markdown, not code — every file in `frameworks/` is written to be pasted directly into any AI chat (Claude.ai, ChatGPT, whatever) as a rules block, with or without Cowriter's own skill wrappers. The `.claude/skills/*/SKILL.md` files are thin — they point at the framework files rather than duplicating them.
 
 ## Layout
 
 ```
 Cowriter/
 ├── README.md
-├── brain.md                 # writer-level memory + load directives (hard-capped, created on first use)
-├── .claude/skills/          # Claude Code entry points (thin wrappers)
-├── brainstorm/              # IDEATION stage (the former Brainstormer)
-│   ├── frameworks/          #   spark, twist, plot, beat, originality methods
-│   ├── templates/           #   session-log scaffold
-│   └── sessions/            #   your brainstorm logs live here
-├── frameworks/              # PORTABLE method content (the real meat)
-│   ├── bible/               # how to build/update/query canon
-│   ├── craft/               # slop-markers + style fingerprint + length budget
-│   ├── prewriting/          # premise, character, world, outline methods
-│   ├── drafting/            # scene, expand, continue, dialogue methods
-│   └── revision/            # continuity, critique, line-edit, pacing methods
-├── templates/               # blank scaffolds to copy per project
-│   ├── bible/
-│   └── style/
-└── projects/                # your actual novels live here
-    └── <book-name>/
-        ├── bible/           # this book's living canon
-        ├── style/           # samples + fingerprint + style guide
-        ├── outline.md
-        └── drafts/
+├── brain.md              # writer-level memory, hard-capped, shared across everything below
+├── .claude/skills/        # 23 Claude Code entry points (thin wrappers over frameworks/)
+├── frameworks/            # the real method content — portable, paste-into-any-chat markdown
+│   ├── core/               # context-map.md — what each track loads, defined once
+│   ├── guide/               # cowrite conductor, brain, quick-track methods
+│   ├── nonfiction/          # brief/facts/outline/section-drafting method
+│   ├── bible/, prewriting/, drafting/, revision/   # fiction pipeline
+│   └── craft/               # slop-markers, style-fingerprint schema, length budgets
+├── brainstorm/             # fiction's ideation stage (the former standalone Brainstormer)
+├── templates/              # blank scaffolds copied per project
+│   ├── bible/, style/, progress.md, brain.md      # fiction
+│   ├── nonfiction/                                 # brief.md, facts.md, outline.md, progress.md
+│   └── context/                                    # quick-track saved-context scaffold
+├── projects/               # your actual books and non-fiction projects live here
+│   └── <name>/  (bible/ + outline.md + drafts/  —or—  brief.md + facts.md + outline.md + drafts/)
+├── contexts/               # saved quick-track situations (an ongoing dispute, a persona)
+│   └── <name>/  (brief.md + log.md + optional style/)
+└── examples/test-book/     # worked fixture, kept out of projects/ so /cowrite greets new writers
 ```
 
-## The three sources of authority
+## Or drive skills directly (advanced)
 
-When skills make decisions, they resolve conflicts in this order:
+`/cowrite` is the recommended path — it sequences everything below in the right order and keeps context loading invisible. If you want a specific pass without the guide:
 
-```
-style-fingerprint (learned from your samples)
-   > style-guide (your manual knobs)
-      > slop-markers (generic quality floor)
-```
+**Fiction:** `/bible-init` scaffolds a project → drop samples in `style/samples/` and run `/style-learn` → `/premise`, `/character`, `/world`, `/outline` → `/scene` to draft → `/slop-check`, `/continuity`, `/critique` to revise → `/bible-update` folds new canon back in.
 
-This keeps the quality layer from sanding off intentional voice. If your style deliberately uses fragments or heavy em-dashes, the fingerprint wins over the generic slop rule.
+**Non-fiction:** same shape, lighter — brief and facts instead of bible, `/expand` or `/continue` to draft sections, the same revision skills after.
 
-## Start here: `/cowrite`
-
-**The front door.** You don't need to learn the skill names. Run:
-
-```
-/cowrite
-```
-
-It detects where your project is, then walks you through it one step at a time — premise → characters → voice → outline → drafting → revision — routing to the right tool automatically and keeping your story bible and voice consistent behind the scenes. Run it again anytime to pick up where you left off; each book's `progress.md` is the live roadmap.
-
-**No idea yet?** Start one stage earlier:
-
-```
-/brainstorm
-```
-
-It invents an original concept — many sparks, then twist off the generic default, then a pressure-tested premise + subverted beat sketch — and writes the result straight into `projects/<book>/`. From there `/cowrite` resumes at the outline. (Already have an idea? `/brainstorm <your idea>` starts from it; or skip straight to `/cowrite`.)
-
-## Or drive the skills directly (advanced)
-
-1. `/bible-init <book-name>` — scaffolds `projects/<book-name>/` from templates.
-2. Drop writing samples into `projects/<book-name>/style/samples/`.
-3. `/style-learn <book-name>` — builds the style fingerprint.
-4. `/premise`, `/character`, `/world`, `/outline` — pre-writing.
-5. `/scene` — draft (style + bible aware).
-6. `/slop-check`, `/continuity`, `/critique` — revise.
-7. `/bible-update` — fold new canon from the draft back into the bible.
+**Any mode:** `/line-edit`, `/slop-check`, `/prose-grade`, `/read-aloud` are fully generic — they work on any draft, project or not.
 
 ## Build status
 
-- [x] Plan
-- [x] Bible spine (templates + init/update/check)
-- [x] Craft floor (slop-markers + style-guide template)
-- [x] Sample-driven voice (style-learn)
-- [x] Vertical slice (outline → scene → slop-check → continuity)
-- [x] Remaining skills (premise, character, world, expand, continue, dialogue, critique, line-edit, pacing, voice, prose-grade, read-aloud)
+All 23 skills are built across all three tracks:
 
-All 21 skills built. `examples/test-book/` is a worked smoke-test example (kept out of `projects/` so `/cowrite` greets new writers instead of resuming the fixture).
+- [x] Fiction pipeline — bible spine, prewriting, drafting, revision (the original build)
+- [x] Craft floor — slop-markers, style-fingerprint schema, length budgets
+- [x] Brain — writer-level memory shared across every project and context
+- [x] Non-fiction track — brief/facts/outline project shape, one method for all seven forms
+- [x] Quick track — zero-setup drafting, saved contexts for recurring situations
 
-## Full skill list
-
-| Phase | Skills |
-|-------|--------|
-| **Ideation (upstream)** | **`brainstorm`** — invent an original concept, then hand off to `/cowrite` (toolkit in [brainstorm/](brainstorm/)) |
-| **Guide (start here)** | **`cowrite`** — conducts all of the below |
-| Writer memory | **`brain`** — capped writer profile + token-saving load directives; read first by every skill |
-| Bible / memory | `bible-init` · `bible-update` · `bible-check` |
-| Craft / quality | `style-learn` · `slop-check` |
-| Pre-writing | `premise` · `character` · `world` · `outline` |
-| Drafting | `scene` · `expand` · `continue` · `dialogue` |
-| Revision | `critique` · `pacing` · `voice` · `line-edit` · `prose-grade` · `read-aloud` · `continuity` |
-
-Suggested revision order: `critique → pacing → voice → line-edit → slop-check → continuity → prose-grade → read-aloud`.
+`examples/test-book/` is a worked fixture and is deliberately excluded from `/cowrite`'s project detection.
