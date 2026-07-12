@@ -1,18 +1,21 @@
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![runs in Claude Code](https://img.shields.io/badge/runs%20in-Claude%20Code-blueviolet.svg?style=flat-square)](https://docs.anthropic.com/en/docs/claude-code)
+[![portable: any LLM](https://img.shields.io/badge/portable-any%20LLM-orange.svg?style=flat-square)](#run-in-any-llm)
 [![license: MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](LICENSE)
 
 # Cowriter
 
 A co-writer for everything you write. A two-line email counts. So does a novel. One front door, `/cowrite`, figures out which you are doing and gets you drafting fast. You never have to learn 23 skill names.
 
-Cowriter is a portable writing toolkit built as plain markdown. The real method lives in `frameworks/` and can be pasted straight into any AI chat (Claude.ai, ChatGPT, and so on). The `.claude/skills/` wrappers are thin convenience layers over those same files, so the method never gets duplicated and never drifts.
+Cowriter is a portable writing toolkit built as plain markdown. The real method lives in `frameworks/` and is written to be pasted straight into any AI chat. The `.claude/skills/` wrappers are thin convenience layers over those same files, so the method never gets duplicated and never drifts.
+
+**It is not tied to Claude.** The `/cowrite` slash commands assume Claude Code, but the method underneath works anywhere you can paste markdown: ChatGPT, Gemini, Claude.ai, local LLM frontends, anything. See [Run in any LLM](#run-in-any-llm) for the no-install path.
 
 ## Table of Contents
 
 - [Background](#background)
 - [Install](#install)
 - [Usage](#usage)
+- [Run in any LLM](#run-in-any-llm)
 - [How it works](#how-it-works)
 - [Layout](#layout)
 - [Advanced usage](#advanced-usage)
@@ -29,16 +32,28 @@ It started as a fiction pipeline (a living bible, an outline of beats, scene dra
 
 ## Install
 
-Cowriter runs inside [Claude Code](https://docs.anthropic.com/en/docs/claude-code), which auto-discovers the skills under `.claude/skills/`.
+Two paths. Pick the one that matches where you write.
+
+### Claude Code (guided, slash commands)
+
+If you use [Claude Code](https://docs.anthropic.com/en/docs/claude-code), the 23 skills auto-register from `.claude/skills/`:
 
 ```sh
 $ git clone https://github.com/Flametossed/Cowriter.git
 $ cd Cowriter
 ```
 
-Then open the folder in Claude Code. The 23 skills register on their own. No build step, no dependencies, no npm install. Everything underneath is markdown.
+Open the folder in Claude Code. The skills register on their own. No build step, no dependencies, no npm install. Everything underneath is markdown.
 
-To use the method without Claude Code, skip the skills entirely and paste the files in `frameworks/` into any AI chat as a rules block. They were written to be read on their own.
+### Any LLM (no install)
+
+If you do not use Claude Code, skip the skills entirely. Paste the files in `frameworks/` into any AI chat as a rules block. They were written to be read on their own.
+
+```sh
+$ git clone https://github.com/Flametossed/Cowriter.git
+```
+
+Then open [`frameworks/guide/guide-method.md`](frameworks/guide/guide-method.md) and [`frameworks/core/context-map.md`](frameworks/core/context-map.md) in your editor, copy their contents, and drop them into any chat window. Full instructions in [Run in any LLM](#run-in-any-llm) below.
 
 ## Usage
 
@@ -66,6 +81,36 @@ This diverges hard from the generic version of your idea, twists it off the stat
 
 Resuming later, on any track, is the same command. Run `/cowrite` again; it reads the project's `progress.md` and picks up where you stopped.
 
+## Run in any LLM
+
+Cowriter is a portable method written in markdown, so you can run the entire pipeline in any chat that accepts text. You lose only the auto-loading magic. In Claude Code the skill wrapper reads `brain.md`, detects the mode from marker files, and pulls the right framework section. In a plain chat, you do that driving yourself. The method is the same; the conductor seat just moves from the wrapper to you.
+
+### What to paste
+
+Drop these into your chat window (or a custom-instructions / system-prompt slot, if the model surfaces one) as a rules block, in roughly this order:
+
+1. [`frameworks/core/context-map.md`](frameworks/core/context-map.md): the contract. What to load per mode, which layer wins on conflict.
+2. [`frameworks/guide/guide-method.md`](frameworks/guide/guide-method.md): the conductor. Its phase table tells you (and the model) what comes next.
+3. `brain.md` from the repo root: your standing rules and steers. Replace it with your own once you have them.
+4. The method file for the track you are on:
+   - Fiction: [`frameworks/bible/bible-method.md`](frameworks/bible/bible-method.md), [`frameworks/prewriting/prewriting-methods.md`](frameworks/prewriting/prewriting-methods.md), [`frameworks/craft/style-fingerprint-schema.md`](frameworks/craft/style-fingerprint-schema.md), [`frameworks/prewriting/outline-method.md`](frameworks/prewriting/outline-method.md), [`frameworks/drafting/scene-method.md`](frameworks/drafting/scene-method.md), [`frameworks/revision/revision-methods.md`](frameworks/revision/revision-methods.md).
+   - Non-fiction: [`frameworks/nonfiction/nonfiction-method.md`](frameworks/nonfiction/nonfiction-method.md), plus the same craft and revision files.
+   - Quick: [`frameworks/guide/quick-method.md`](frameworks/guide/quick-method.md).
+5. The living files for your project: `brain.md`, the project's `bible/` (or `brief.md` + `facts.md`), `style/style-fingerprint.md`, `outline.md`. Paste the current state at the start of each session, or keep them in a note you edit live.
+
+That list looks long, but you only paste the files for the phase you are running. A fiction draft session loads the bible, the fingerprint, and `scene-method.md`. A critique session loads `premise.md` and `revision-methods.md`. The context-map tells the model which slot each file fills.
+
+### What changes vs. Claude Code
+
+- **No slash commands.** You drive the sequence by hand. Open `guide-method.md`, read its phase table, and tell the model which phase you are in ("we are at Phase 5, drafting beat 4"). The model then runs that method inline.
+- **No auto-loading.** When a phase says "load the fingerprint," you paste it. When brain.md picks up a new steer, you edit the file yourself instead of letting the wrapper persist it.
+- **No skill auto-discovery.** The 23 `/skill` entry points do nothing outside Claude Code. Skip them. The framework files they point at are the real method.
+- **Everything else is identical.** The slop kill-list, the style fingerprint, the authority order (`style-fingerprint > style-guide > brain > slop-markers`), the canon enforcement, the one-step-at-a-time conductor rules. These are all just markdown the model reads.
+
+### Compatibility
+
+The method is model-agnostic and uses no Claude-specific features. The framework files are plain markdown, so they paste cleanly into Claude.ai, ChatGPT, Google Gemini, or any local frontend that exposes a system-prompt slot (LM Studio, Ollama Web UI, and friends). No modifications are required. If a model has a small context window, paste only the files for the current phase rather than the whole stack.
+
 ## How it works
 
 The same layers run under every track.
@@ -75,7 +120,7 @@ The same layers run under every track.
 - **The bible** (fiction only, `frameworks/bible/`) is a living canon file per book, so a detail set in chapter 2 does not quietly drift by chapter 12.
 - **Facts** (non-fiction's version of the bible, `facts.md`) are numbered claims with sources and a status (verified, asserted, needs-check). Drafting can only assert what is in here or what is common knowledge. Nothing gets invented and passed off as sourced.
 
-Everything above is portable markdown rather than code. Every file in `frameworks/` is written to be pasted directly into any AI chat as a rules block, with or without Cowriter's own skill wrappers. The `.claude/skills/*/SKILL.md` files are thin; they point at the framework files instead of duplicating them.
+Everything above is portable markdown rather than code. Every file in `frameworks/` is written to be pasted directly into any AI chat as a rules block, with or without Cowriter's own skill wrappers. The `.claude/skills/*/SKILL.md` files are thin; they point at the framework files instead of duplicating them. See [Run in any LLM](#run-in-any-llm) for the paste-and-go walkthrough.
 
 ## Layout
 
@@ -83,7 +128,7 @@ Everything above is portable markdown rather than code. Every file in `framework
 Cowriter/
 ├── README.md
 ├── brain.md              # writer-level memory, hard-capped, shared across everything below
-├── .claude/skills/        # 23 Claude Code entry points (thin wrappers over frameworks/)
+├── .claude/skills/        # 23 Claude Code entry points (optional; thin wrappers over frameworks/)
 ├── frameworks/            # the real method content: portable, paste-into-any-chat markdown
 │   ├── core/               # context-map.md: what each track loads, defined once
 │   ├── guide/               # cowrite conductor, brain, quick-track methods
