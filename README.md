@@ -13,12 +13,12 @@ Cowriter is a portable writing toolkit built as plain markdown. The real method 
 ## Table of Contents
 
 - [Background](#background)
+- [How it works](#how-it-works)
 - [Install](#install)
 - [Usage](#usage)
-- [Run in any LLM](#run-in-any-llm)
-- [How it works](#how-it-works)
-- [Layout](#layout)
 - [Advanced usage](#advanced-usage)
+- [Layout](#layout)
+- [Run in any LLM](#run-in-any-llm)
 - [Project status](#project-status)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
@@ -31,6 +31,17 @@ Writing tools tend to fall into one of two shapes. Either a single generic promp
 Cowriter picks a shape based on what you're actually writing, then runs the right pipeline for it: a **Quick** track for one-offs, a **Non-fiction** track for anything claims-and-sources, and a **Fiction** track for anything with a bible and canon. All three share the same craft floor (slop kill-list, style fingerprint, standing rules in `brain.md`), so voice and quality stay consistent no matter which track you're on.
 
 For the full shape of that decision, see [`frameworks/core/context-map.md`](frameworks/core/context-map.md).
+
+## How it works
+
+The same layers run under every track.
+
+- **The craft layer** (`frameworks/craft/`) holds the slop kill-list in [`slop-markers.md`](frameworks/craft/slop-markers.md) and the AI style-fingerprint spec. Authority order on conflict: **style-fingerprint > style-guide > brain > slop-markers**. Your deliberate voice always beats the generic floor.
+- **The brain** (`brain.md`, [`brain-method.md`](frameworks/guide/brain-method.md)) is a single file, hard-capped at 100 lines, that every skill loads first. It remembers standing rules ("no em-dashes"), steers you got stuck on, workflow habits, and load directives, and prunes everything else out of context. This mechanism is what keeps the toolkit from getting slow as projects pile up.
+- **The bible** (fiction only, `frameworks/bible/`) is a living canon file per book, so a detail set in chapter 2 does not quietly drift by chapter 12.
+- **Facts** (non-fiction's version of the bible, `facts.md`) is a numbered list of claims, sources, and status (verified, asserted, needs-check). Drafting draws only on what's in here plus common knowledge. Nothing gets invented and passed off as sourced.
+
+Everything above is portable markdown rather than code. Every file in `frameworks/` is written to be pasted directly into any AI chat as a rules block, with or without Cowriter's own skill wrappers. `.claude/skills/*/SKILL.md` files are thin; they point to the framework files instead of duplicating them. See [Run in any LLM](#run-in-any-llm) for the paste-and-go walkthrough.
 
 ## Install
 
@@ -47,13 +58,7 @@ Open the folder in Claude Code. Skills register on their own. No build step, no 
 
 ### Any LLM (no install)
 
-If you don't use Claude Code, skip the skills entirely. Paste the files in `frameworks/` into any AI chat as a rules block. They're written to be read on their own.
-
-```sh
-$ git clone https://github.com/Flametossed/Cowriter.git
-```
-
-Then open [`frameworks/guide/guide-method.md`](frameworks/guide/guide-method.md) and [`frameworks/core/context-map.md`](frameworks/core/context-map.md) in your editor, copy the contents, and drop them into any chat window. Full instructions in [Run in any LLM](#run-in-any-llm) below.
+If you don't use Claude Code, skip the skills entirely. Paste the files in `frameworks/` into any AI chat as a rules block. They're written to be read on their own. See [Run in any LLM](#run-in-any-llm) below for exactly what to paste and when.
 
 ## Usage
 
@@ -80,6 +85,39 @@ No idea for a book yet? Start a stage earlier:
 This diverges hard from the generic version of an idea, twists it off the statistical center, and hands a pressure-tested premise straight to `/cowrite`. Already have an idea? `/brainstorm <your idea>` starts from there.
 
 Resuming later, on any track, use the same command. Run `/cowrite` again; it reads the project's `progress.md` and picks up where you stopped.
+
+## Advanced usage
+
+`/cowrite` is the recommended path. It sequences everything below in the right order and keeps context loading invisible. If you want a single pass without the guide, drive the skills directly.
+
+**Fiction:** `/bible-init` scaffolds the project. Drop samples in `style/samples/` and run `/style-learn`. Then `/premise`, `/character`, `/world`, `/outline`. Draft with `/scene`. Revise with `/slop-check`, `/continuity`, `/critique`. Finally `/bible-update` folds new canon back in.
+
+**Non-fiction:** same shape, lighter. Brief and facts instead of a bible. Draft sections with `/expand` and `/continue`. Run the same revision skills after.
+
+**Any mode:** `/line-edit`, `/slop-check`, `/prose-grade`, and `/read-aloud` are fully generic. They work on any draft, project or not.
+
+## Layout
+
+```
+Cowriter/
+├── README.md
+├── brain.md                # writer-level memory, hard-capped, shared across everything below
+├── .claude/skills/          # 23 Claude Code entry points (optional; thin wrappers over frameworks/)
+├── frameworks/               # real method content: portable, paste-into-any-chat markdown
+│   ├── core/                   # context-map.md: track loads, defined once
+│   ├── guide/                   # cowrite conductor, brain, quick-track methods
+│   ├── prewriting/              # premise, outline, brief/facts methods
+│   ├── drafting/                # scene and section-drafting methods
+│   ├── revision/                # continuity, critique, revision methods
+│   ├── craft/                   # slop-markers, style-fingerprint schema
+│   ├── bible/                   # bible-init/update methods (fiction canon)
+│   └── nonfiction/              # nonfiction-method.md (all seven forms)
+├── projects/                # non-fiction and fiction projects live here
+│   └── <name>/                 # fiction: bible/ + outline.md + drafts/ · non-fiction: brief.md + facts.md + outline.md + drafts/
+├── contexts/                # saved quick-track situations (an ongoing dispute, a persona)
+│   └── <name>/                 # brief.md + log.md + optional style/
+└── examples/test-book/      # worked fixture, kept out of projects/ so /cowrite greets new writers
+```
 
 ## Run in any LLM
 
@@ -110,50 +148,6 @@ The list looks long, but you only paste the files for the phase you're running. 
 ### Compatibility
 
 The method is model-agnostic and uses no Claude-specific features. The framework files are plain markdown, and paste cleanly into Claude.ai, ChatGPT, Google Gemini, or any local frontend that exposes a system-prompt slot (LM Studio, Ollama Web UI, and friends). No modifications required. If the model has a small context window, paste only the files for the current phase rather than the whole stack.
-
-## How it works
-
-The same layers run under every track.
-
-- **The craft layer** (`frameworks/craft/`) holds the slop kill-list in [`slop-markers.md`](frameworks/craft/slop-markers.md) and the AI style-fingerprint spec. Authority order on conflict: **style-fingerprint > style-guide > brain > slop-markers**. Your deliberate voice always beats the generic floor.
-- **The brain** (`brain.md`, [`brain-method.md`](frameworks/guide/brain-method.md)) is a single file, hard-capped at 100 lines, that every skill loads first. It remembers standing rules ("no em-dashes"), steers you got stuck on, workflow habits, and load directives, and prunes everything else out of context. This mechanism is what keeps the toolkit from getting slow as projects pile up.
-- **The bible** (fiction only, `frameworks/bible/`) is a living canon file per book, so a detail set in chapter 2 does not quietly drift by chapter 12.
-- **Facts** (non-fiction's version of the bible, `facts.md`) is a numbered list of claims, sources, and status (verified, asserted, needs-check). Drafting draws only on what's in here plus common knowledge. Nothing gets invented and passed off as sourced.
-
-Everything above is portable markdown rather than code. Every file in `frameworks/` is written to be pasted directly into any AI chat as a rules block, with or without Cowriter's own skill wrappers. `.claude/skills/*/SKILL.md` files are thin; they point to the framework files instead of duplicating them. See [Run in any LLM](#run-in-any-llm) for the paste-and-go walkthrough.
-
-## Layout
-
-```
-Cowriter/
-├── README.md
-├── brain.md                # writer-level memory, hard-capped, shared across everything below
-├── .claude/skills/          # 23 Claude Code entry points (optional; thin wrappers over frameworks/)
-├── frameworks/               # real method content: portable, paste-into-any-chat markdown
-│   ├── core/                   # context-map.md: track loads, defined once
-│   ├── guide/                   # cowrite conductor, brain, quick-track methods
-│   ├── prewriting/              # premise, outline, brief/facts methods
-│   ├── drafting/                # scene and section-drafting methods
-│   ├── revision/                # continuity, critique, revision methods
-│   ├── craft/                   # slop-markers, style-fingerprint schema
-│   ├── bible/                   # bible-init/update methods (fiction canon)
-│   └── nonfiction/              # nonfiction-method.md (all seven forms)
-├── projects/                # non-fiction and fiction projects live here
-│   └── <name>/                 # fiction: bible/ + outline.md + drafts/ · non-fiction: brief.md + facts.md + outline.md + drafts/
-├── contexts/                # saved quick-track situations (an ongoing dispute, a persona)
-│   └── <name>/                 # brief.md + log.md + optional style/
-└── examples/test-book/      # worked fixture, kept out of projects/ so /cowrite greets new writers
-```
-
-## Advanced usage
-
-`/cowrite` is the recommended path. It sequences everything below in the right order and keeps context loading invisible. If you want a single pass without the guide, drive the skills directly.
-
-**Fiction:** `/bible-init` scaffolds the project. Drop samples in `style/samples/` and run `/style-learn`. Then `/premise`, `/character`, `/world`, `/outline`. Draft with `/scene`. Revise with `/slop-check`, `/continuity`, `/critique`. Finally `/bible-update` folds new canon back in.
-
-**Non-fiction:** same shape, lighter. Brief and facts instead of a bible. Draft sections with `/expand` and `/continue`. Run the same revision skills after.
-
-**Any mode:** `/line-edit`, `/slop-check`, `/prose-grade`, and `/read-aloud` are fully generic. They work on any draft, project or not.
 
 ## Project status
 
