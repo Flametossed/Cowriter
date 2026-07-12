@@ -1,4 +1,3 @@
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![portable: any LLM](https://img.shields.io/badge/portable-any%20LLM-orange.svg?style=flat-square)](#run-in-any-llm)
 [![license: MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](LICENSE)
 
